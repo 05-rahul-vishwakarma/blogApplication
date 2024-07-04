@@ -9,13 +9,7 @@ import axios from 'axios';
 
 
 function Home() {
-  const nevigate = useNavigate();
   const [cardData, setCardData] = useState([]);
-  const { isValidate } = useContext(AuthContext)
-
-
-
-
 
   const allBlogPosts = async () => {
     try {
@@ -26,16 +20,9 @@ function Home() {
     }
   }
 
-
-
   useEffect(() => {
-    if (!isValidate) {
-      nevigate('/auth/login');
-      return;
-    }
-    console.log("works");
     allBlogPosts();
-  }, [isValidate, nevigate]);
+  },[]);
 
 
   return (

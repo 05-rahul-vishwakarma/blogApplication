@@ -5,14 +5,12 @@ import { Link,  useNavigate } from 'react-router-dom'
 import '../style/auth/register.css'
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import AuthContext from '../../context/AuthContext';
-import UserContext from '../../context/UserContext';
 import { useContext } from 'react';
+import AuthContext from '../../context/AuthContext';
 
 function Form({ type }) {
 
-    const { setValidate } = useContext(AuthContext)
-    const { setUser } = useContext(UserContext);
+    const {setValidate} = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm()
     const nevigate = useNavigate();
 
@@ -20,9 +18,7 @@ function Form({ type }) {
 
         if (type == "login") {
             let res = await axios.post('/login', data)
-            console.log(res);
             if (res?.data?.status === 200) {
-                setUser(res?.data)
                 setValidate(true);
                 toast.success(res?.data?.message)
                 nevigate('/home')                

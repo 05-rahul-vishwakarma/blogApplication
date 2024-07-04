@@ -1,20 +1,8 @@
 import CreatePost from '../components/CreatePost'
 import ProfileCard from '../components/ProfileCard'
 import '../style/postBlog/postblog.css'
-import AuthContext from '../../context/AuthContext'
-import { useContext } from 'react';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'
 
 function PostBlog() {
-  const nevigate = useNavigate();
-  const { isValidate } = useContext(AuthContext)
-  
-  useEffect(()=>{
-    if (isValidate === false) {
-    nevigate('/auth/login')
-    }
-  },[isValidate])
 
 
   return (
