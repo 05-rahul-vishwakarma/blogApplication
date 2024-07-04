@@ -1,0 +1,136 @@
+.desktopHeader {
+  display: flex;
+  justify-content: space-between;
+  place-items: center;
+  white-space: nowrap;
+  padding: 1.5rem 2.25rem;
+  border-bottom: 1px solid #f0f2f4;
+  background: white;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.159);
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+.logoBox {
+  display: flex;
+  place-items: center;
+  gap: 1rem;
+  color: #111418;
+}
+.logo {
+  width: 40px;
+}
+
+.logoBox > h2 {
+  color: #111418;
+  font-size: x-large;
+  font-weight: bold;
+  line-height: 1.25rem;
+  letter-spacing: 1px;
+}
+.sideMenus {
+  display: flex;
+  flex: 1 1 0%;
+  justify-content: flex-end;
+  gap: 2rem;
+}
+.sideMenus > div {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+}
+.myText {
+  color: #111418;
+  font-size: 0.9rem; /* 14px */
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.myText:hover {
+  color: rgb(104, 104, 191);
+}
+.myText:focus{
+  color: rgb(104, 104, 191);
+}
+
+.my-button {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 1rem; /* Adjust based on your design needs */
+  height: 2.5rem; /* 40px */
+  padding-left: 1rem; /* 16px */
+  padding-right: 1rem; /* 16px */
+  background-color: #f0f2f4;
+  color: #111418;
+  font-size: 0.875rem; /* 14px */
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.015em;
+  border: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.my-button:hover {
+  transform: scale(1.2);
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.phoneHeader{
+  display: flex;
+  justify-content: space-between;
+  place-items: center;
+  white-space: nowrap;
+  padding: 1rem 2.25rem;
+  border-bottom: 1px solid #f0f2f4;
+  background: white;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.159);
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+.phoneHeader div:nth-child(2){
+  display: flex;
+  gap: 1rem;
+  place-items: center;
+}
+
+.phonesidebar{
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  background-color:  #EDE8F5 ;
+}
+.phoneMenuBar{
+  width: 50px;
+  display: flex;
+  justify-content: center;
+}
+.common{
+  width: 90%;
+  margin:.2rem .2rem;
+  padding: .5rem;
+  border-radius: 5px;
+  background-color: white;
+}
+.flex{
+  display: flex;
+  gap: .3rem;
+  text-decoration: none;
+
+}
+.flex > p{
+  font-size: .78rem;
+}
+

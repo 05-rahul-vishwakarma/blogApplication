@@ -1,0 +1,100 @@
+.createPost {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.createPost > div {
+  width: 90%;
+  height: 90%;
+}
+
+.createPost .topic {
+  letter-spacing: 1px;
+  color: rgb(67, 66, 66);
+}
+
+.postAuthor {
+  margin: 1rem 0;
+  font-weight: 500;
+  color: #3d52a0;
+}
+.createPostDate {
+  font-style: oblique;
+  color: #3d52a0;
+}
+.createPost div > div {
+  display: flex;
+  justify-content: space-between;
+  place-items: center;
+  padding-right: 1rem;
+}
+.createPostImg {
+  height: 60%;
+  width: 80%;
+}
+.createPostImg > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.uploadIcon {
+  display: flex;
+  place-items: center;
+  gap: 1rem;
+}
+.upload__image-wrapper {
+  width: 100%;
+  height: 100%;
+}
+.upload__image-wrapper > button{
+  border:none;
+  background: transparent;
+}
+.image-item {
+  width: 100%;
+  height: 100%;
+}
+.image-item > img {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: cover;
+}
+.postText {
+  margin-top: 1rem;
+  width: 90%;
+  height: 30%;
+  background-color: rgba(128, 128, 128, 0.097);
+}
+.postText > textarea {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  border: none;
+  background: transparent;
+}
+
+.btn {
+  padding: 0.5rem;
+  background: #7091e6;
+  color: white;
+  font-size: large;
+  font-weight: 600;
+  border-radius: 10px;
+  margin-top: 1rem;
+  width: 40%;
+}
+
+.btn:hover{
+  background: #2452c4;
+}

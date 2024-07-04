@@ -1,0 +1,29 @@
+.blogDetailsContainer{
+    display: flex;
+    justify-content: center;
+    place-items: center;
+}
+.centerCantainer{
+    margin-top: 1rem;
+    width: 60%;
+    background-color: white;
+    border-radius: 10px;
+}
+.fullDetailsProfile{
+    display: flex;
+    justify-content: space-between;
+    place-items: center;
+    padding: 0 1rem;
+    margin-top: 1rem;
+}
+.blogDetailsImg{
+    margin-top: 1rem;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+}
+.blogDetailsImg > img{
+    object-fit: contain;
+    width: 94%;
+    border-radius: 5%;     
+}

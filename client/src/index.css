@@ -1,0 +1,61 @@
+/* #3D52A0 */
+/* 7091E6 */
+/* 8697C4 */
+/* ADBB0A */
+/* EDE8F5 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #cfd2e44c;
+  width: 100vw;
+  height: 100vh;
+}
+
+@media screen and (max-width: 890px) {
+  .desktopHeader {
+    display: none;
+  }
+  .home {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .profileSection {
+    display: none;
+  }
+  .postSection {
+    width: 100%;
+  }
+  .formCantainer {
+    display: block;
+    overflow: hidden;
+
+  }
+  .form{
+    width: 100%;
+    height: 100%;
+  }
+  .centerCantainer{
+    width: 100%;
+}
+}
+
+@media screen and (min-width: 1040px) {
+  .cardCantainer {
+    width: 24rem;
+    min-height: 28rem;
+  }
+  .home {
+    padding: 3rem;
+  }
+  .phoneHeader {
+    display: none;
+  }
+  .createPage {
+    padding: 2rem;
+  }
+}
