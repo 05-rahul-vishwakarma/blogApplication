@@ -8,7 +8,7 @@ const isAuthenticated = require('../middleware/isAuthenticated');
 router.use(
     cors({
         credentials: true,
-        origin: "http://localhost:5173"
+        origin: "https://blog-applicaton.vercel.app"
     })
 )
 
