@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import '../style/navbar.css'
 import { IoHomeSharp } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
@@ -10,7 +10,7 @@ import { useState } from 'react';
 function Navbar() {
 
     const [menu, setMenu] = useState(false);
-
+    const nevigate = useNavigate();
 
     return (
         <div style={{ position: "relative" }} >
@@ -30,6 +30,7 @@ function Navbar() {
                         </div>
                         <button
                             className="my-button"
+                            onClick={()=>nevigate('/auth/login')}
                         >
                             <span className="truncate">Sign in</span>
                         </button>
@@ -78,9 +79,9 @@ function Navbar() {
                                     </Link>
                                 </li>
                                 <li className='common'>
-                                    <Link className='flex' >
+                                    <Link to={'/auth/login'} className='flex' >
                                         <CgProfile />
-                                        <p>Profile</p>
+                                        <p>Login</p>
                                     </Link>
                                 </li>
 
