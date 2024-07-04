@@ -37,7 +37,7 @@ function Home() {
     }
     console.log("works");
     allBlogPosts();
-  }, [isValidate, nevigate]);
+  }, [isValidate]);
 
 
   return (
