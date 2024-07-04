@@ -11,7 +11,7 @@ import axios from 'axios';
 import {UserProvider} from '../context/UserContext'
 import BlogDetails from './pages/BlogDetails';
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'https://blogapplicaton-1.onrender.com';
 axios.defaults.withCredentials = true;
 
 
