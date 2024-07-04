@@ -29,8 +29,13 @@ function Home() {
 
 
   useEffect(() => {
+    if (!isValidate) {
+      nevigate('/auth/login');
+      return;
+    }
+    console.log("works");
     allBlogPosts();
-  }, []);
+  }, [isValidate, nevigate]);
 
 
   return (

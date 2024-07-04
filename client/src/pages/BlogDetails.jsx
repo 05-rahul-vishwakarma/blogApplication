@@ -23,12 +23,12 @@ function BlogDetails() {
     }
 
     useEffect(()=>{
-      // if (isValidate === false) {
-      //   nevigate('/auth/login');
-      //   return;
-      // }
+      if (isValidate === false) {
+        nevigate('/auth/login');
+        return;
+      }
       GetblogDetails();
-    },[searchParam])
+    },[searchParam,nevigate])
 
 
     return (

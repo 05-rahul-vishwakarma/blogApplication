@@ -23,6 +23,12 @@ const corsOption={
     origin:'https://blogapplicatonfrontend.onrender.com',
     credentials:true
 };
+
+// const corsOption={
+//     origin:'http://localhost:5173',
+//     credentials:true
+// };
+
 app.use(cors(corsOption)); 
 
 app.use('', authRouter)
