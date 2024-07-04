@@ -7,10 +7,7 @@ const { register, login , isAuth} = require('../controler/authControler')
 
 // middleware 
 router.use(
-    cors({
-        credentials: true,
-        origin: "https://blog-applicaton.vercel.app"
-    })
+    cors()
 )
 
 router.post('/register', register)

@@ -6,10 +6,7 @@ const isAuthenticated = require('../middleware/isAuthenticated');
 
 
 router.use(
-    cors({
-        credentials: true,
-        origin: "https://blog-applicaton.vercel.app"
-    })
+    cors()
 )
 
 router.get  ('/profile',isAuthenticated,getProfile);
