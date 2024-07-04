@@ -23,6 +23,7 @@ const getProfile = async (req, res) => {
 
 const blogPost = async (req, res) => {
   try {
+    if (!req.username) throw new Error("please login first after that you can share your blog");
     const username = req.username;
     const user = await User.findOne({ username: username });
 
