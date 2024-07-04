@@ -26,18 +26,11 @@ function Home() {
     }
   }
 
-  console.log(isValidate);
 
 
   useEffect(() => {
-    if (!isValidate) {
-      console.log("yes avi v bakkchodi ho rha h");
-      nevigate('/auth/login');
-      return;
-    }
-    console.log("works");
     allBlogPosts();
-  }, [isValidate]);
+  }, []);
 
 
   return (
