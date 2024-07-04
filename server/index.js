@@ -20,7 +20,7 @@ app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
 
 const corsOption={
-    origin:'http://localhost:5173',
+    origin:'https://blogapplicatonfrontend.onrender.com',
     credentials:true
 };
 app.use(cors(corsOption)); 
