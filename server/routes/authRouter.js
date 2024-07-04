@@ -9,7 +9,7 @@ const { register, login , isAuth} = require('../controler/authControler')
 router.use(
     cors({
         credentials: true,
-        origin: "https://blog-applicaton.vercel.app/"
+        origin: "https://blog-applicaton.vercel.app"
     })
 )
 
