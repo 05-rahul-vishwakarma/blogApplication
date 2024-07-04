@@ -1,15 +1,17 @@
 import { useSearchParams } from "react-router-dom"
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BlogFullDetails from "../components/BlogFullDetails";
+import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../context/AuthContext'
 
 
 function BlogDetails() {
     const [searchParams] = useSearchParams();
     const searchParam = searchParams.get('$data');
-    // eslint-disable-next-line no-unused-vars
     const [cardDetails,setCardDetails] = useState();
-
+    const { isValidate } = useContext(AuthContext)
+    const nevigate = useNavigate();
 
     const GetblogDetails = async() =>{
         try {
@@ -21,8 +23,12 @@ function BlogDetails() {
     }
 
     useEffect(()=>{
+      if (isValidate === false) {
+        nevigate('/auth/login');
+        return;
+      }
       GetblogDetails();
-    },[searchParam])
+    },[searchParam,nevigate])
 
 
     return (

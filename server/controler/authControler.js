@@ -1,6 +1,5 @@
 const User = require("../models/user");
 const jwt = require('jsonwebtoken');
-const { use } = require("../routes/authRouter");
 
 
 const register = async (req, res) => {
@@ -46,9 +45,9 @@ const login = async (req, res) => {
         const { username, password } = req.body;
         if (!username || !password) throw new Error("field is missing");
         const user = await User.findOne({ username });
+        console.log(user);
         if (!user) throw new Error("user is not found");
         if (password === user.password) {
-            req.session.username = 'JohnDoe';
             const tokenData = {
                 userId: user._id,
                 username: user.username,

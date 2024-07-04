@@ -33,6 +33,7 @@ function CreatePost() {
   const [about, setAbout] = useState('');
 
   const maxNumber = 1;
+  const maxFileSize = 5_000_000;
   const { user } = useContext(UserContext);
 
 
@@ -91,6 +92,7 @@ function CreatePost() {
             value={images}
             onChange={onChange}
             maxNumber={maxNumber}
+            maxFileSize={maxFileSize}
             dataURLKey="data_url"
           >
             {({

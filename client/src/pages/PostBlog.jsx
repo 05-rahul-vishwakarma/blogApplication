@@ -9,8 +9,9 @@ import { useNavigate } from 'react-router-dom'
 function PostBlog() {
   const nevigate = useNavigate();
   const { isValidate } = useContext(AuthContext)
+  
   useEffect(()=>{
-    if (isValidate == false) {
+    if (isValidate === false) {
     nevigate('/auth/login')
     }
   },[isValidate])

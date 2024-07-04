@@ -40,7 +40,6 @@ function Card({ content }) {
                 <div className='blogText'>
                     <p>
                         {content?.blogWriting.substring(0, 85) + '....'}
-                        {/*  */}
 
                     </p>
 

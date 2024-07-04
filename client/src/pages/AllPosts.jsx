@@ -1,10 +1,15 @@
 import Card from "../components/Card";
 import axios from "axios";
 import '../style/home.css'
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import AuthContext from '../../context/AuthContext'
+import { useNavigate } from "react-router-dom";
 
 export default function AllPosts() {
   const [cardData, setCardData] = useState([]);
+  const { isValidate } = useContext(AuthContext);
+  const nevigate = useNavigate();
+
   const allBlogPosts = async () => {
     try {
       let res = await axios.get('/allBlogpost');
@@ -16,14 +21,19 @@ export default function AllPosts() {
   }
 
   useEffect(() => {
-    allBlogPosts();
-  }, [])
+    if (isValidate === false) {
+      nevigate('/auth/login')
+    } else {
+      allBlogPosts();
+    }
+  }, [isValidate])
+  
 
   return (
     <main className='home'>
       {
-        cardData.map((item,index)=>(
-          <Card key={index} content={item}  />
+        cardData.map((item, index) => (
+          <Card key={index} content={item} />
         ))
       }
     </main>

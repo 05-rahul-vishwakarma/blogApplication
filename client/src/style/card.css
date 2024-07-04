@@ -13,11 +13,12 @@
   box-shadow: 0 1px 2px #c3cbe2;
   background: white;
   height: min-content;
+  
 }
 
 .cardImg > img {
   width: 100%;
-  /* height: 240px; */
+  height: 240px;
   object-fit: contain;
   border-radius: 1rem;
 }

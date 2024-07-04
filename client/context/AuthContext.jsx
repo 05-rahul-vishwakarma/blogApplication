@@ -6,13 +6,14 @@ import axios from 'axios';
 const AuthContext = createContext({});
 
 export const Authprovider = ({ children }) => {
-  // const [auth, setAuth] = useState({});
   const [isValidate, setValidate] = useState();
 
   const isAuth = async () => {
     let res = await axios.get('/auth');
     if (res?.data?.status !== 200) {
      setValidate(false)
+    }else{
+     setValidate(true)
     }
   }
 

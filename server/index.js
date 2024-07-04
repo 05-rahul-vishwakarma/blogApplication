@@ -5,9 +5,8 @@ const authRouter = require('./routes/authRouter')
 const { mongoose } = require('mongoose');
 const cookieParser = require('cookie-parser');
 const userRouter = require('./routes/userRouter')
-const session = require('express-session');
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 mongoose.connect(process.env.MONGODB_URL).then(() => {
     console.log("database is connented");
@@ -20,13 +19,11 @@ app.use(express.json());
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
 
-app.use(session({
-    secret: process.env.JWT_SECRET, // Replace with your own secret key
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: Date.now() + 24 * 60 * 60 * 1000 },
-    expires: Date.now() + 24 * 60 * 60 * 1000,
-}));
+const corsOption={
+    origin:'http://localhost:5173',
+    credentials:true
+};
+app.use(cors(corsOption)); 
 
 app.use('', authRouter)
 app.use('', userRouter)

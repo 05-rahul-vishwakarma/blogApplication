@@ -1,13 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const cors = require('cors');
 const {getProfile , blogPost , allBlogpost , getBlogDetails} = require('../controler/userControler');
 const isAuthenticated = require('../middleware/isAuthenticated');
 
 
-router.use(
-    cors()
-)
 
 router.get  ('/profile',isAuthenticated,getProfile);
 router.post ('/blogPost',isAuthenticated,blogPost);
