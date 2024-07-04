@@ -16,6 +16,7 @@ function Home() {
 
 
 
+
   const allBlogPosts = async () => {
     try {
       let res = await axios.get('/allBlogpost');
@@ -25,15 +26,16 @@ function Home() {
     }
   }
 
+  console.log(isValidate);
 
 
   useEffect(() => {
     if (!isValidate) {
+      console.log("yes avi v bakkchodi ho rha h");
       nevigate('/auth/login');
       return;
     }
-
-    console.log("Yes, works");
+    console.log("works");
     allBlogPosts();
   }, [isValidate, nevigate]);
 
