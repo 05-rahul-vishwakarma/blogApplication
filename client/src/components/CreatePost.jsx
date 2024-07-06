@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 import ImageUploading from "react-images-uploading";
 import '../style/postBlog/createPost.css'
 import axios from 'axios'
-import { useContext } from 'react';
-import UserContext from '../../context/UserContext';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import {  useNavigate } from 'react-router-dom'
@@ -34,7 +32,6 @@ function CreatePost() {
 
   const maxNumber = 1;
   const maxFileSize = 5_000_000;
-  const { user } = useContext(UserContext);
 
 
   const onChange = (imageList, addUpdateIndex) => {
@@ -43,9 +40,6 @@ function CreatePost() {
     setImages(imageList);
   };
 
-  // YYYY-MM-DD HH:mm:ss
-  const now = moment(user?.createdAt);
-  const formattedDate = now.format('DD/MM/YYYY ');
 
   const blogPost = async () => {
     try {
@@ -83,8 +77,8 @@ function CreatePost() {
           <input value={topic} onChange={(e) => setTopic(e.target.value)} type="text" className="topic truncate " placeholder="how to design a greate landing page" name="" id="" style={{ width: "100%", padding: "1rem 0", border: "none", outline: "none", fontSize: "2rem" }} />
         </h1>
         <div>
-          <p className='truncate postAuthor ' > <span style={{ color: "red", }} >By: </span>{user?.username}</p>
-          <p className='createPostDate' >{formattedDate}</p>
+          <p className='truncate postAuthor ' > <span style={{ color: "red", }} >By: </span>username</p>
+          <p className='createPostDate' >date</p>
         </div>
         <div className='createPostImg' style={{cursor:"pointer"}} >
           <ImageUploading

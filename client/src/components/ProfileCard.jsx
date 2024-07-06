@@ -2,7 +2,6 @@
 import { useContext, useEffect, useState } from 'react';
 import '../style/profile/profileCard.css'
 import axios from 'axios';
-import UserContext from '../../context/UserContext';
 import ImageUploading from 'react-images-uploading';
 import { toast } from 'react-toastify';
 function ProfileCard() {
@@ -34,10 +33,8 @@ function ProfileCard() {
     console.log(imageList[0]);
   };
   const [getProfileData, updateProfileData] = useState();
-  const { setUser } = useContext(UserContext);
   const [profile, setProfile] = useState();
 
-  console.log(profile);
 
 
 
@@ -47,7 +44,6 @@ function ProfileCard() {
       console.log(res);
       setProfile(res?.data?.user?.profilePhoto)
       updateProfileData(res?.data?.user)
-      setUser(res?.data?.user)
     } catch (error) {
       console.log(error);
     }

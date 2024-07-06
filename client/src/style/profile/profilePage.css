@@ -23,3 +23,10 @@
     background: white;
     box-shadow: 0 1px 5px #c3cbe2;
 }
+
+.cardContent{
+    padding: .5rem;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 1rem;
+}

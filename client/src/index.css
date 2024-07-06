@@ -16,7 +16,6 @@ body {
   height: 100vh;
 }
 
-
 @media screen and (max-width: 890px) {
   .desktopHeader {
     display: none;
@@ -34,14 +33,23 @@ body {
   .formCantainer {
     display: block;
     overflow: hidden;
-
   }
-  .form{
+  .form {
     width: 100%;
     height: 100%;
   }
-  .centerCantainer{
+  .centerCantainer {
     width: 100%;
+  }
+  .postCard {
+    width: 120px;
+    height: 100px;
+  }
+  .cardContent{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 100px;
+    grid-gap: 1rem;
 }
 }
 
