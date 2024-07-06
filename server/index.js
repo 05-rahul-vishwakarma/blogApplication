@@ -5,10 +5,6 @@ const authRouter = require('./routes/authRouter')
 const { mongoose } = require('mongoose');
 const cookieParser = require('cookie-parser');
 const userRouter = require('./routes/userRouter')
-
-
-
-
 const app = express();
 const port = process.env.PORT || 8000;
 
@@ -17,9 +13,6 @@ mongoose.connect(process.env.MONGODB_URL).then(() => {
 }).catch((err) => {
     console.log(err);
 })
-
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 
 app.use(express.json());

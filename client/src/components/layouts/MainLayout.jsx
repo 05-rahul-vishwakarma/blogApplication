@@ -8,13 +8,6 @@ import { toast } from "react-toastify";
 
 function MainLayout() {
   const { isValidate } = useContext(AuthContext);
-  console.log(isValidate);
-
-    if (isValidate === false) {
-      toast.error('Login First')
-    }else{
-      toast.success('Authenticated')
-    }
 
   return (
     <>
