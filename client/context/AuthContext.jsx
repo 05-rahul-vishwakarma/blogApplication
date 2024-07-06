@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-// import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 const AuthContext = createContext({});
@@ -10,17 +10,19 @@ export const Authprovider = ({ children }) => {
   const [isValidate, setValidate] = useState(null);
 
   const isAuth = async () => {
-    console.log("yes works");
     let res = await axios.get('/auth');
-    console.log(res);
     if (res?.data?.status === 200) {
+      console.log(res?.data);
+      toast.success("Authenticated")
       setValidate(true)
+    } else {
+      toast.error("Authenticat Please");
     }
   }
 
   useEffect(() => {
     isAuth();
-  }, [])
+  },[])
 
 
   return (

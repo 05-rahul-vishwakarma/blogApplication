@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../style/navbar.css'
 import { IoHomeSharp } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
@@ -27,6 +27,7 @@ function Navbar() {
                             <Link to="/home" className="myText" >Home</Link>
                             <Link to="/allPost" className="myText" >Explore</Link>
                             <Link to="/create" className="myText" >Create</Link>
+                            <Link to="/profile" className="myText" >Profile</Link>      
                         </div>
                         <button
                             className="my-button"
@@ -78,6 +79,13 @@ function Navbar() {
                                         <p>Post</p>
                                     </Link>
                                 </li>
+                                <li className='common'>
+                                    <Link to={'/profile'} className='flex' >
+                                        <CgProfile />
+                                        <p>Profile</p>
+                                    </Link>
+                                </li>
+
                                 <li className='common'>
                                     <Link to={'/auth/login'} className='flex' >
                                         <CgProfile />

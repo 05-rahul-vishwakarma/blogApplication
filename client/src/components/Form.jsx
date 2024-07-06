@@ -7,6 +7,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useContext } from 'react';
 import AuthContext from '../../context/AuthContext';
+// import { useContext } from 'react';
+// import AuthContext from '../../context/AuthContext';
 
 function Form({ type }) {
 
@@ -19,7 +21,7 @@ function Form({ type }) {
         if (type == "login") {
             let res = await axios.post('/login', data)
             if (res?.data?.status === 200) {
-                setValidate(true);
+                setValidate(true)
                 toast.success(res?.data?.message)
                 nevigate('/home')                
             } else {

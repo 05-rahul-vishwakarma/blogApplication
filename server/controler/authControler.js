@@ -45,7 +45,6 @@ const login = async (req, res) => {
         const { username, password } = req.body;
         if (!username || !password) throw new Error("field is missing");
         const user = await User.findOne({ username });
-        console.log(user);
         if (!user) throw new Error("user is not found");
         if (password === user.password) {
             const tokenData = {

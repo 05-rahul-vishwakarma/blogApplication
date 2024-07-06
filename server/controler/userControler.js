@@ -5,7 +5,12 @@ const getProfile = async (req, res) => {
   try {
     const username = req.username;
     const user = await User.findOne({ username: username })
-
+    .populate({
+      path: "posts",
+      model: Post,
+    }).exec();
+    
+    
     return res.json({
       message: "user data fetched succesfully",
       status: 200,
@@ -13,6 +18,7 @@ const getProfile = async (req, res) => {
     })
 
   } catch (error) {
+    console.log(error.message);
     return res.json({
       message: "something went wrong",
       status: 501,
@@ -25,21 +31,30 @@ const blogPost = async (req, res) => {
   try {
     if (!req.username) throw new Error("please login first after that you can share your blog");
     const username = req.username;
+    const userId = req.id;
+    console.log(userId);
     const user = await User.findOne({ username: username });
 
     const { blogTopic, blogImage, blogWriting } = req.body;
 
     const postBlog = {
-      creatorId: user._id,
-      username: user.username,
+      creatorId: userId,
+      username: username,
       blogTopic,
       blogImage,
       blogWriting
     }
+    const newPost = new Post(postBlog);
+    const savedPost = await newPost.save();
 
-    const newBlog = Post.create(postBlog);
+    console.log(savedPost._id);
 
-    if (!newBlog) throw new Error("something went wrong post not created please try again");
+    // Update user's posts array
+    const updatedUser = await User.findByIdAndUpdate(userId, { $push: { posts: savedPost._id } });
+
+
+
+    if (!updatedUser) throw new Error("something went wrong post not created please try again");
 
     return res.json({
       message: "successfully posted blog",
@@ -64,7 +79,6 @@ const allBlogpost = async (req, res) => {
       allBlogPosts
     })
   } catch (error) {
-    console.log(error.message);
     return res.json({
       message: "failed",
       status: 500,
@@ -82,7 +96,6 @@ const getBlogDetails = async (req, res) => {
       post
     })
   } catch (error) {
-    console.log(error);
     return res.json({
       message: "something went wrong",
       status: 500
@@ -90,5 +103,25 @@ const getBlogDetails = async (req, res) => {
   }
 }
 
+const uploadProfilePhoto = async (req, res) => {
+  try {
+    const { profilePhoto } = req.body;
+    const userId = req.id;
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        profilePhoto,
+      },
+    );
 
-module.exports = { getProfile, blogPost, allBlogpost, getBlogDetails }
+    return res.json({
+      message: "successfully profile photo uploaded",
+      status: 200,
+    })
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+module.exports = { getProfile, blogPost, allBlogpost, getBlogDetails, uploadProfilePhoto }

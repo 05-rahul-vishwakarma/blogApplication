@@ -7,9 +7,6 @@
   border-bottom: 1px solid #f0f2f4;
   background: white;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.159);
-  position: sticky;
-  top: 0;
-  left: 0;
 }
 .logoBox {
   display: flex;

@@ -1,11 +1,12 @@
-.profileCard{
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  padding: .5rem;
+.upload__image-wrapper{
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
 }
-.profileCard > div{
-    display: flex;
-    flex-direction: column;
-    place-items: center;
+.upload__image-wrapper > div{
+ margin-top: 1rem;  
+}
+.profileImage{
+  border: 1px solid;
+  height: 200px;
 }

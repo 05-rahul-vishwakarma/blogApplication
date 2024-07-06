@@ -1,21 +1,32 @@
 /* eslint-disable no-unused-vars */
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation, useNavigate } from "react-router-dom"
 import Navbar from "../Navbar"
-import AuthContext from "../../../context/AuthContext";
 import { useContext, useEffect } from "react";
-import axios from "axios";
+import AuthContext from "../../../context/AuthContext";
+import { toast } from "react-toastify";
+
 
 function MainLayout() {
-  // const {isValidate} = useContext(AuthContext);
-  // const render = isValidate;
+  const { isValidate } = useContext(AuthContext);
+  console.log(isValidate);
+
+  if (isValidate == null) {
+    if (isValidate === false) {
+      toast.error('Login First')
+    }else{
+      toast.success('Authenticated')
+    }
+  }
+
   return (
-    <div>
+    <>
       <Navbar />
-      <div>
+      <main>
         <Outlet />
-      </div>
-    </div>
+      </main>
+    </>
   )
+
 }
 
 export default MainLayout
