@@ -10,6 +10,11 @@ import axios from 'axios';
 function Home() {
   const [cardData, setCardData] = useState([]);
 
+  useEffect(() => {
+    allBlogPosts();
+  }, []);
+
+
   const allBlogPosts = async () => {
     try {
       let res = await axios.get('/allBlogpost');
@@ -19,9 +24,6 @@ function Home() {
     }
   }
 
-  useEffect(() => {
-    allBlogPosts();
-  },[]);
 
 
   return (

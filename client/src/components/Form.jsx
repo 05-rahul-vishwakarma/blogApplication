@@ -1,19 +1,18 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable react/prop-types */
 import { useForm } from 'react-hook-form';
-import { Link,  useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../style/auth/register.css'
 import axios from 'axios';
 import { toast } from 'react-toastify';
-// import { useContext } from 'react';
-// import AuthContext from '../../context/AuthContext';
-// import { useContext } from 'react';
-// import AuthContext from '../../context/AuthContext';
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 
 function Form({ type }) {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
     const nevigate = useNavigate();
+    const { setUser } = useContext(UserContext);
 
     const submit = async (data) => {
 
@@ -21,6 +20,7 @@ function Form({ type }) {
             let res = await axios.post('/login', data)
             if (res?.data?.status === 200) {
                 toast.success(res?.data?.message)
+                setUser(res?.data)
                 nevigate('/home')                
             } else {
                 toast.error(res?.data?.message)
