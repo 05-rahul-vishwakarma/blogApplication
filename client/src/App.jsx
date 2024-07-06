@@ -11,11 +11,11 @@ import axios from 'axios';
 import BlogDetails from './pages/BlogDetails';
 import Profile from './pages/Profile';
 
-axios.defaults.baseURL = 'http://localhost:8000';
-axios.defaults.withCredentials = true;
-
-// axios.defaults.baseURL = 'https://blogapplicatonbackend.onrender.com';
+// axios.defaults.baseURL = 'http://localhost:8000';
 // axios.defaults.withCredentials = true;
+
+axios.defaults.baseURL = 'https://blogapplicatonbackend.onrender.com';
+axios.defaults.withCredentials = true;
 
 
 function App() {

@@ -19,15 +19,15 @@ app.use(express.json());
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
 
-// const corsOption={
-//     origin:'https://blogapplicatonfrontend.onrender.com',
-//     credentials:true
-// };
-
 const corsOption={
-    origin:'http://localhost:5173',
+    origin:'https://blogapplicatonfrontend.onrender.com',
     credentials:true
 };
+
+// const corsOption={
+//     origin:'http://localhost:5173',
+//     credentials:true
+// };
 
 app.use(cors(corsOption)); 
 
