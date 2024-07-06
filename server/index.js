@@ -5,7 +5,7 @@ const authRouter = require('./routes/authRouter')
 const { mongoose } = require('mongoose');
 const cookieParser = require('cookie-parser');
 const userRouter = require('./routes/userRouter')
-const bodyParser = require('body-parser');
+
 
 
 

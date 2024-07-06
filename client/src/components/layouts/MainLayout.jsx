@@ -10,13 +10,11 @@ function MainLayout() {
   const { isValidate } = useContext(AuthContext);
   console.log(isValidate);
 
-  if (isValidate == null) {
     if (isValidate === false) {
       toast.error('Login First')
     }else{
       toast.success('Authenticated')
     }
-  }
 
   return (
     <>
