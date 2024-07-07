@@ -17,7 +17,7 @@ function Home() {
 
   const allBlogPosts = async () => {
     try {
-      let res = await axios.get('/allBlogpost');
+      let res = await axios.get('/allBlogpost', { withCredentials: true });
       setCardData(res?.data?.allBlogPosts)
     } catch (error) {
       console.log(error);
