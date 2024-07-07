@@ -40,6 +40,7 @@ const register = async (req, res) => {
 
 }
 
+
 const login = async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -55,7 +56,7 @@ const login = async (req, res) => {
 
             const token = await jwt.sign(tokenData, process.env.JWT_SECRET, { expiresIn: '1d' });
 
-            return res.cookie('token', token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "strict" }).json({
+            return res.cookie('token', token, { maxAge: 1 * 24 * 60 * 60 * 1000 }).json({
                 message: "successfully login",
                 status: 200,
                 _id: user._id,

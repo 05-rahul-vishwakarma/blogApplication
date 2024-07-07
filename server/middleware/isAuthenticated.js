@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const isAuthenticated = async (req, res, next) => {
     try {
         const token = req?.cookies?.token || "";
+        console.log(token);
         if (!token) {
             return res.json({
                 message: "user is not authenticated",
@@ -16,7 +17,7 @@ const isAuthenticated = async (req, res, next) => {
                 status: 500
             })
         }
-        req.id = decode.userId;   
+        req.id = decode.userId;
         req.username = decode.username;
         req.email = decode.email;
         next();
