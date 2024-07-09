@@ -1,19 +1,23 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 // UserContext.js
-import React, { createContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 
-// Create a context with a default value
 const UserContext = createContext();
 
-const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+export const UserContextProvider = ({ children }) => {
+  const [userData, update_user_data] = useState(0);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ userData , update_user_data }}>
       {children}
     </UserContext.Provider>
   );
 };
 
-export { UserContext, UserProvider };
+UserContextProvider.propTypes = {
+  children: PropTypes.node,
+};
+
+export const useUserContext = () => {
+  return useContext(UserContext);
+};

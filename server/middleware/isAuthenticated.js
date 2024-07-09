@@ -6,11 +6,11 @@ const isAuthenticated = async (req, res, next) => {
         console.log(token);
         if (!token) {
             return res.json({
-                message: "user is not authenticated",
+                message: `${token}=> cookie ${req?.cookie}`,
                 status: 401
             })
         };
-        const decode = await jwt.verify(token, process.env.JWT_SECRET)
+        const decode = jwt.verify(token, process.env.JWT_SECRET)
         if (!decode) {
             return res.json({
                 message: "something went wrong",

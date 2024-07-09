@@ -10,21 +10,19 @@ import axios from 'axios';
 function Home() {
   const [cardData, setCardData] = useState([]);
 
-  useEffect(() => {
-    allBlogPosts();
-  }, []);
-
-
   const allBlogPosts = async () => {
     try {
-      let res = await axios.get('/allBlogpost');
+      let res = await axios.get('/allBlogpost', { withCredentials: true });
+      console.log(res?.data);
       setCardData(res?.data?.allBlogPosts)
     } catch (error) {
       console.log(error);
     }
   }
 
-
+  useEffect(() => {
+    allBlogPosts();
+  }, []);
 
   return (
     <main className='home'>

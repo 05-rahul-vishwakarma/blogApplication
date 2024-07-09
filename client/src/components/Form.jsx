@@ -6,13 +6,13 @@ import '../style/auth/register.css'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
+import { useUserContext } from '../../context/UserContext';
 
 function Form({ type }) {
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { update_user_data } = useContext(useUserContext); 
     const nevigate = useNavigate();
-    const { setUser } = useContext(UserContext);
 
     const submit = async (data) => {
 
@@ -20,7 +20,8 @@ function Form({ type }) {
             let res = await axios.post('/login', data)
             if (res?.data?.status === 200) {
                 toast.success(res?.data?.message)
-                setUser(res?.data)
+                update_user_data(res?.data)
+                console.log(res?.data);
                 nevigate('/home')                
             } else {
                 toast.error(res?.data?.message)
