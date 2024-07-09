@@ -3,6 +3,7 @@ import axios from "axios";
 
 export const axiosPrivate = axios.create({
     baseURL: 'https://blogapplicatonbackend.onrender.com',
+    // baseURL: 'http://localhost:8000',
     headers: {
       "content-Type": "application/json",
     },
@@ -16,6 +17,7 @@ function useAxiosPrivate() {
       (config) => {
         const token = getCookie("token");
         if (!config.headers["Authorization"]) {
+          console.log(getCookie('token'));
           config.headers["Authorization"] = `Bearer ${token}`;
         }
         return config;

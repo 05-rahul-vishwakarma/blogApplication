@@ -67,7 +67,7 @@ function ProfileCard() {
 
 
   useEffect(() => {
-    profileData();
+    // profileData();
   }, [])
 
 
