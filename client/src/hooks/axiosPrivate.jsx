@@ -14,8 +14,10 @@ function useAxiosPrivate() {
   useEffect(() => {
     const reqIntercept = axiosPrivate.interceptors.request.use(
       (config) => {
+        const token = getCookie("token");
+        console.log(token);
         if (!config.headers["Authorization"]) {
-          config.headers["Authorization"] = `Bearer ${ getCookie("token") }`;
+          config.headers["Authorization"] = `Bearer ${token}`;
         }
         return config;
       },
