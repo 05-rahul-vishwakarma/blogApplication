@@ -6,7 +6,7 @@ const isAuthenticated = async (req, res, next) => {
         console.log(token);
         if (!token) {
             return res.json({
-                message: `${token}=> cookie ${req}`,
+                message: `${token}=> cookie ${JSON.stringify(req)}`,
                 status: 401
             })
         };
