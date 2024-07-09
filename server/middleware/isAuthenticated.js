@@ -5,7 +5,7 @@ const isAuthenticated = async (req, res, next) => {
         // const token = req?.cookies?.token || "";
         const authHeader = req.headers["authorization"];
         const token = authHeader.split(" ")[1];
-        console.log("auth header", authHeader);
+        console.log("auth header", authHeader, "cookie", req.cookies);
         
         if (!token) {
             return res.json({
