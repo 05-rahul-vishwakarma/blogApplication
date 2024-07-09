@@ -3,10 +3,10 @@ const jwt = require('jsonwebtoken');
 const isAuthenticated = async (req, res, next) => {
     try {
         const token = req?.cookies?.token || "";
-        console.log(token);
+        console.log(req);
         if (!token) {
             return res.json({
-                message: `${token}=> cookie ${JSON.stringify(req)}`,
+                message: `${token}=> cookie }`,
                 status: 401
             })
         };
