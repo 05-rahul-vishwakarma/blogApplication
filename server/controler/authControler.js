@@ -58,7 +58,6 @@ const login = async (req, res) => {
 
             return res.cookie('token', token, { maxAge: 1 * 24 * 60 * 60 * 1000 }, {
                  sameSite: 'None',
-                 secure: true, 
             }).json({
                 message: "successfully login",
                 status: 200,
