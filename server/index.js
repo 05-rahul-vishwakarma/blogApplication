@@ -38,7 +38,13 @@ app.use(
       allowedHeaders: "Content-Type , Authorization",
     })
   ); 
-app.options('*', cors());
+app.options('*', cors({
+  origin: 'https://blogapplicatonfrontend.onrender.com' ,
+  optionsSuccessStatus: 200,
+  preflightContinue: true,
+  credentials: true,
+  allowedHeaders: "Content-Type , Authorization",
+}));
 
 app.use('', authRouter)
 app.use('', userRouter)
