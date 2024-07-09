@@ -2,10 +2,9 @@ const jwt = require('jsonwebtoken');
 
 const isAuthenticated = async (req, res, next) => {
     try {
-        // const token = req?.cookies?.token || "";
-        const authHeader = req.headers["authorization"];
-        const token = authHeader.split(" ")[1];
-        console.log("auth header", authHeader, "cookie", req.cookies);
+        const token = req?.cookies?.token || req.headers["authorization"]?.split(" ")[1] || "";
+
+        console.log("auth token", req.cookies);
         
         if (!token) {
             return res.json({
