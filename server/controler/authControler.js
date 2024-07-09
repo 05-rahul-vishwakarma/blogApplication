@@ -56,21 +56,21 @@ const login = async (req, res) => {
 
             const token = await jwt.sign(tokenData, process.env.JWT_SECRET, { expiresIn: '1d' });
 
-            return res.cookie('token', token, { maxAge: 1 * 24 * 60 * 60 * 1000 }, {
-                 sameSite: 'None',
-            }).json({
+            res.cookie('token', token, { maxAge: 1 * 24 * 60 * 60 * 1000 });
+             return res.send({
                 message: "successfully login",
                 status: 200,
                 _id: user._id,
                 username: user.username,
                 email: user.email,
                 token
-            })
-        } else {
-            return res.json({
-                message: "password is incorrect",
-                status: 500
-            })
+            });
+            
+            } else {
+                return res.json({
+                    message: "password is incorrect",
+                    status: 500
+                })
         }
     } catch (error) {
         console.log(error.message);
