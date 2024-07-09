@@ -19,17 +19,25 @@ app.use(express.json());
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
 
-const corsOption={
-    origin:'https://blogapplicatonfrontend.onrender.com',
-    credentials:true
-};
+// const corsOption={
+//     origin:'https://blogapplicatonfrontend.onrender.com',
+//     credentials:true
+// };
 
 // const corsOption={
 //     origin:'http://localhost:5173',
 //     credentials:true
 // };
 
-app.use(cors(corsOption)); 
+app.use(
+    cors({
+      origin: 'https://blogapplicatonfrontend.onrender.com' ,
+      optionsSuccessStatus: 200,
+      preflightContinue: true,
+      credentials: true,
+      allowedHeaders: "Content-Type , Authorization",
+    })
+  ); 
 
 app.use('', authRouter)
 app.use('', userRouter)

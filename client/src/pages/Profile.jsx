@@ -11,7 +11,7 @@ function Profile() {
 
      const ProfileData = async () => {
         try {
-            let res = await axios.get('/profile');
+            let res = await axios.get('/profile', {withCredentials: true});
             setProfile(res?.data?.user?.posts)
         } catch (error) {
             console.log(error);
