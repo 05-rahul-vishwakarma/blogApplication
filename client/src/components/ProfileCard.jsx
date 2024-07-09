@@ -4,6 +4,7 @@ import '../style/profile/profileCard.css'
 import axios from 'axios';
 import ImageUploading from 'react-images-uploading';
 import { toast } from 'react-toastify';
+import useAxiosPrivate from '../hooks/axiosPrivate';
 function ProfileCard() {
 
   async function get64encoding(file) {
@@ -32,6 +33,7 @@ function ProfileCard() {
     setImages(imageList);
     console.log(imageList[0]);
   };
+  const axiosPrivate = useAxiosPrivate();
   const [getProfileData, updateProfileData] = useState();
   const [profile, setProfile] = useState();
 
@@ -40,7 +42,7 @@ function ProfileCard() {
 
   const profileData = async () => {
     try {
-      let res = await axios.get('/profile');
+      let res = await axiosPrivate.get('/profile');
       console.log(res);
       setProfile(res?.data?.user?.profilePhoto)
       updateProfileData(res?.data?.user)
@@ -67,7 +69,7 @@ function ProfileCard() {
 
 
   useEffect(() => {
-    // profileData();
+    profileData();
   }, [])
 
 
