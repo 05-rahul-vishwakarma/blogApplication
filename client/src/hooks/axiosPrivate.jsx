@@ -1,7 +1,8 @@
 import { useEffect } from "react";
+import axios from "axios";
 
 export const axiosPrivate = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL,
+    baseURL: 'https://blogapplicatonbackend.onrender.com',
     headers: {
       "content-Type": "application/json",
     },
