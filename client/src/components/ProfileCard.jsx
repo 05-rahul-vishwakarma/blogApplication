@@ -5,7 +5,13 @@ import axios from 'axios';
 import ImageUploading from 'react-images-uploading';
 import { toast } from 'react-toastify';
 import useAxiosPrivate from '../hooks/axiosPrivate';
+import { useNavigate } from 'react-router-dom';
+
+
 function ProfileCard() {
+
+  let navigate = useNavigate();
+
 
   async function get64encoding(file) {
     try {
@@ -40,10 +46,11 @@ function ProfileCard() {
 
 
 
+
   const profileData = async () => {
     try {
       let res = await axiosPrivate.get('/profile');
-      console.log(res);
+      if (!res?.data?.status === "ok") return navigate("/auth/login");
       setProfile(res?.data?.user?.profilePhoto)
       updateProfileData(res?.data?.user)
     } catch (error) {
@@ -61,7 +68,8 @@ function ProfileCard() {
         profilePhoto: base64Data
       }
       let res = await axios.post('/uploadProfilePhoto', data);
-      console.log(res);
+      window.location.reload();
+      toast.success(res?.data?.message)
     } catch (error) {
       console.log(error);
     }

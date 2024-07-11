@@ -1,11 +1,14 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ImageUploading from "react-images-uploading";
 import '../style/postBlog/createPost.css'
 import axios from 'axios'
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import {  useNavigate } from 'react-router-dom'
+import { UserContext } from "../../context/UserContext";
+// import moment from 'moment';
+
 
 
 async function get64encoding(file) {
@@ -29,6 +32,11 @@ function CreatePost() {
   const [topic, setTopic] = useState("");
   const [images, setImages] = useState([]);
   const [about, setAbout] = useState('');
+  const {user} = useContext(UserContext);
+
+
+  const formattedDate = moment().format('YYYY-MM-DD');
+  console.log(formattedDate);
 
   const maxNumber = 1;
   const maxFileSize = 5_000_000;
@@ -77,8 +85,8 @@ function CreatePost() {
           <input value={topic} onChange={(e) => setTopic(e.target.value)} type="text" className="topic truncate " placeholder="how to design a greate landing page" name="" id="" style={{ width: "100%", padding: "1rem 0", border: "none", outline: "none", fontSize: "2rem" }} />
         </h1>
         <div>
-          <p className='truncate postAuthor ' > <span style={{ color: "red", }} >By: </span>username</p>
-          <p className='createPostDate' >date</p>
+          <p className='truncate postAuthor ' > <span style={{ color: "red", }} >By: </span>{user?.username}</p>
+          <p className='createPostDate' > {formattedDate} </p>
         </div>
         <div className='createPostImg' style={{cursor:"pointer"}} >
           <ImageUploading

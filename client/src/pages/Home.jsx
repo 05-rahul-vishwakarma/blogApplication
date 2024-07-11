@@ -3,7 +3,6 @@ import Card from '../components/Card'
 import '../style/home.css'
 import { useContext, useState } from 'react';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 

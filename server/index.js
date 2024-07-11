@@ -5,42 +5,38 @@ const authRouter = require('./routes/authRouter')
 const { mongoose } = require('mongoose');
 const cookieParser = require('cookie-parser');
 const userRouter = require('./routes/userRouter')
+const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 8000;
 
 mongoose.connect(process.env.MONGODB_URL).then(() => {
-    console.log("database is connented");
+  console.log("database is connented");
 }).catch((err) => {
-    console.log(err);
+  console.log(err);
 })
 
 
-app.use(express.json());
 app.use(cookieParser())
-app.use(express.urlencoded({ extended: false }))
 
-// const corsOption={
-//     origin:'https://blogapplicatonfrontend.onrender.com',
-//     credentials:true
-// };
+app.use(express.json({ limit: '50mb' }));
 
-// const corsOption={
-//     origin:'http://localhost:5173',
-//     credentials:true
-// };
+// Increase the limit for URL-encoded payload
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
+
 
 app.use(
-    cors({
-      origin: 'https://blogapplicatonfrontend.onrender.com' ,
-      // origin: 'http://localhost:5173',
-      optionsSuccessStatus: 200,
-      preflightContinue: true,
-      credentials: true,
-      allowedHeaders: "Content-Type , Authorization",
-    })
-  ); 
+  cors({
+    origin: 'https://blogapplicatonfrontend.onrender.com' ,
+    // origin: 'http://localhost:5173',
+    optionsSuccessStatus: 200,
+    preflightContinue: true,
+    credentials: true,
+    allowedHeaders: "Content-Type , Authorization",
+  })
+);
 app.options('*', cors({
-  origin: 'https://blogapplicatonfrontend.onrender.com' ,
+  origin: 'https://blogapplicatonfrontend.onrender.com',
   // origin: 'http://localhost:5173',
   optionsSuccessStatus: 200,
   preflightContinue: true,
@@ -52,5 +48,5 @@ app.use('', authRouter)
 app.use('', userRouter)
 
 app.listen(port, () => {
-    console.log(`app is listing ${port}`);
+  console.log(`app is listing ${port}`);
 })

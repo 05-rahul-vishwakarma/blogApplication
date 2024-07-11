@@ -4,17 +4,19 @@ import ProfilePostCard from '../components/ProfilePostCard'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import useAxiosPrivate from '../hooks/axiosPrivate'
+import { useNavigate } from 'react-router-dom'
 
 function Profile() {
+    const navigate = useNavigate();
+    const [profile, setProfile] = useState([]);
+    const axiosPrivate = useAxiosPrivate();
 
-     const [profile,setProfile] = useState([]);
-     console.log(profile);
-     const axiosPrivate = useAxiosPrivate();
-
-     const ProfileData = async () => {
+    const ProfileData = async () => {
         try {
             // let res = await axios.get('/profile', {withCredentials: true});
             let res = await axiosPrivate.get("/profile");
+            console.log(res);
+            if (res?.data?.status !== 200) return navigate("/auth/login");
             setProfile(res?.data?.user?.posts)
         } catch (error) {
             console.log(error);
@@ -35,7 +37,7 @@ function Profile() {
             <div className='profilePostCantainer'>
                 <div className='cardContent' >
                     {
-                        profile.map((index,item)=>(
+                        profile.map((index, item) => (
                             <ProfilePostCard key={index} content={item} />
                         ))
                     }

@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import axios from 'axios';
 import BlogDetails from './pages/BlogDetails';
 import Profile from './pages/Profile';
+import { UserProvider } from '../context/UserContext';
 
 // axios.defaults.baseURL = 'http://localhost:8000';
 // axios.defaults.withCredentials = true;
@@ -22,7 +23,7 @@ function App() {
 
   return (
 
-    <>
+    <UserProvider>
       <Router>
         <Routes>
           {/*--------------------------------------- home page contents ---------------------------- */}
@@ -43,7 +44,7 @@ function App() {
 
         </Routes>
       </Router>
-    </>
+    </UserProvider>
   )
 }
 

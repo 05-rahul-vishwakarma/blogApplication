@@ -72,7 +72,10 @@ const blogPost = async (req, res) => {
 
 const allBlogpost = async (req, res) => {
   try {
-    const allBlogPosts = await Post.find();
+    const allBlogPosts = await Post.find().populate({
+      path:"creatorId",
+      model:User
+    }).exec();
     return res.json({
       message: "success",
       status: 200,

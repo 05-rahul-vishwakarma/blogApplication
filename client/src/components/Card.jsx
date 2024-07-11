@@ -6,6 +6,7 @@ import moment from 'moment';
 import { useState } from 'react';
 
 function Card({ content }) {
+    // console.log(content?.creatorId?.profilePhoto);
 
     const navigate = useNavigate();
 
@@ -25,8 +26,8 @@ function Card({ content }) {
 
                 <div className='profileBar' >
                     <div>
-                        <img src="/profile.svg" alt="" width={50} height={50} />
-                        <h4>{content?.username}</h4>
+                        <img src={content?.creatorId?.profilePhoto || "/profile.svg"} alt="" width={50} height={50} className='dp' />
+                        <h4 style={{marginLeft:".5rem"}} >{content?.username}</h4>
                     </div>
 
                     <p>{formattedDate}</p>

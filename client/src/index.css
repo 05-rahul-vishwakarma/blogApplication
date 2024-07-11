@@ -16,6 +16,11 @@ body {
   height: 100vh;
 }
 
+button{
+  border: none;
+  outline: none;
+}
+
 @media screen and (max-width: 890px) {
   .desktopHeader {
     display: none;
