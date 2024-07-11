@@ -44,6 +44,7 @@ function ProfileCard() {
   const [profile, setProfile] = useState();
 
 
+  console.log(getProfileData);
 
 
 
@@ -137,6 +138,9 @@ function ProfileCard() {
           )}
         </ImageUploading>
       </div>
+      <span style={{marginLeft:"1rem",fontWeight:"600"}} >
+        {getProfileData?.username}
+      </span>
       <div className='btn' style={{ margin: "1rem", textAlign: "center", cursor: "pointer" }} onClick={uploadProfilePhoto}  >
         post
       </div>

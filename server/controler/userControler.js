@@ -5,12 +5,12 @@ const getProfile = async (req, res) => {
   try {
     const username = req.username;
     const user = await User.findOne({ username: username })
-    .populate({
-      path: "posts",
-      model: Post,
-    }).exec();
-    
-    
+      .populate({
+        path: "posts",
+        model: Post,
+      }).exec();
+
+
     return res.json({
       message: "user data fetched succesfully",
       status: 200,
@@ -73,8 +73,8 @@ const blogPost = async (req, res) => {
 const allBlogpost = async (req, res) => {
   try {
     const allBlogPosts = await Post.find().populate({
-      path:"creatorId",
-      model:User
+      path: "creatorId",
+      model: User
     }).exec();
     return res.json({
       message: "success",
@@ -92,7 +92,10 @@ const allBlogpost = async (req, res) => {
 const getBlogDetails = async (req, res) => {
   try {
     const id = req.query.id;
-    const post = await Post.findById(id);
+    const post = await Post.findById(id).populate({
+      path: "creatorId",
+      model: User
+    }).exec();;
     return res.json({
       message: "successfully data is fetched",
       status: 200,

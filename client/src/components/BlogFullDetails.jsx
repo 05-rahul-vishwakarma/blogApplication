@@ -4,6 +4,8 @@ import moment from 'moment';
 
 function BlogFullDetails({content}) {
 
+    // console.log();
+
     const now = moment(content?.createdAt);
     const formattedDate = now.format('DD/MM/YYYY');
 
@@ -12,7 +14,7 @@ function BlogFullDetails({content}) {
             <div className='centerCantainer' >
                 <div className='fullDetailsProfile'>
                     <div style={{ display: "flex", justifyContent: "center", placeItems: "center", gap: ".3rem" }} >
-                        <img src="/profile.svg" alt="" width={50} height={50} />
+                        <img src={ content?.creatorId?.profilePhoto ||"/profile.svg"} alt="" width={50} height={50} className='dp' />
                         <h4> {content?.username} </h4>
                     </div>
 

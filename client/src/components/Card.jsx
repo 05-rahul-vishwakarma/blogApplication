@@ -25,7 +25,7 @@ function Card({ content }) {
             <div className="cardCantainer">
 
                 <div className='profileBar' >
-                    <div>
+                    <div onClick={() => navigate('/profile')} >
                         <img src={content?.creatorId?.profilePhoto || "/profile.svg"} alt="" width={50} height={50} className='dp' />
                         <h4 style={{marginLeft:".5rem"}} >{content?.username}</h4>
                     </div>

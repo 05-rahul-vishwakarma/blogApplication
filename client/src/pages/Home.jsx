@@ -24,13 +24,13 @@ function Home() {
   }, []);
 
   return (
-    <main className='home'>
+    <section className='home'>
       {
         cardData.map((item, index) => (
           <Card key={index} content={item} />
         ))
       }
-    </main>
+    </section>
   )
 }
 

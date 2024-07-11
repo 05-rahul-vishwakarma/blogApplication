@@ -9,6 +9,7 @@ function BlogDetails() {
     const searchParam = searchParams.get('$data');
     const [cardDetails,setCardDetails] = useState();
 
+
     const GetblogDetails = async() =>{
         try {
            let res = await axios.get(`/getBlogDetails/?id=${searchParam}`);
@@ -24,7 +25,7 @@ function BlogDetails() {
 
 
     return (
-        <div>
+        <div style={{padding:" 0 1rem"}} >
           <BlogFullDetails content={cardDetails} />
         </div>
     )
