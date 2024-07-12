@@ -65,7 +65,8 @@ const blogPost = async (req, res) => {
     console.log(error.message);
     return res.json({
       message: "something went wrong",
-      status: 500
+      status: 500,
+      error:error.message
     })
   }
 }
