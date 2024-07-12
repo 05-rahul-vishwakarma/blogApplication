@@ -1,5 +1,5 @@
 .createPost {
-  min-height: 100%;
+  min-height: 90%;
   display: flex;
   justify-content: center;
   padding: 2rem 0;
@@ -39,13 +39,13 @@
   padding-right: 1rem;
 }
 .createPostImg {
-  height: 60%;
+  height: 300px;
   width: 80%;
 }
 .createPostImg > img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .uploadIcon {
   display: flex;

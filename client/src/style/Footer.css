@@ -15,6 +15,7 @@
     justify-content: left;
     position: relative;
     padding-left: .7rem;
+    background: transparent;
   }
   
   #toggle {
@@ -22,7 +23,7 @@
   }
   
   .button {
-    width: 98%;
+    width: 97%;
     height: 60px;
     background: var(--branco);
     border-radius: 15px;
