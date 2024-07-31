@@ -29,7 +29,7 @@ app.use(cors({
   // origin: 'http://localhost:5173',// allow this origin to access the server
   origin: 'https://blogapplicatonfrontend.onrender.com',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true // if your backend requires credentials
+  credentials: true 
 }));
 
 app.use('', authRouter)
