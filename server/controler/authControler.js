@@ -33,7 +33,7 @@ const register = async (req, res) => {
 
     } catch (error) {
         return res.json({
-            message: error.message,
+            message:'something went wrong',
             status: 500,
         })
     }
@@ -78,7 +78,7 @@ const login = async (req, res) => {
     } catch (error) {
         return res.json({
             status: 501,
-            message: error.message,
+            message:"something went wrong",
         })
 
     }
