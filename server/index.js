@@ -33,8 +33,8 @@ app.use(cors({
   credentials: true
 }));
 
-app.use('/auth', authRouter)
-app.use('/user', userRouter)
+app.use( authRouter)
+app.use( userRouter)
 
 app.listen(port, () => {
   console.log(`app is listing ${port}`);
