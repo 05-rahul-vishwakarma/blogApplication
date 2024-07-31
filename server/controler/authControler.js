@@ -4,6 +4,8 @@ const CustomError = require('../helper/customError');
 
 const register = async (req, res) => {
     try {
+        console.log("yeah working fine");
+        console.log(req.body);
         const { username, email, password, confirmPassword } = req.body;
 
         if (!username || !email || !password || !confirmPassword) throw new Error("field is missing");
