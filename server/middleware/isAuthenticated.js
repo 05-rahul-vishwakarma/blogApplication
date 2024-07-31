@@ -1,28 +1,24 @@
 const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const isAuthenticated = async (req, res, next) => {
+    const token = req.headers['authorization'] || req?.cookies?.token;
+
+    if (!token) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+
     try {
-        const token = req?.cookies?.token || req.headers["authorization"]?.split(" ")[1] || "";        
-        if (!token) {
-            return res.json({
-                message: `${token}=> cookie }`,
-                status: 401
-            })
-        };
-        const decode = jwt.verify(token, process.env.JWT_SECRET)
-        if (!decode) {
-            return res.json({
-                message: "something went wrong",
-                status: 500
-            })
-        }
-        req.id = decode.userId;
-        req.username = decode.username;
-        req.email = decode.email;
+        const decoded = jwt.verify(token, JWT_SECRET);
+        req.id = decoded.userId;
+        req.username = decoded.username;
+        req.email = decoded.email;
         next();
     } catch (error) {
-        console.log(error);
+        res.status(401).json({ message: 'Invalid token' });
     }
 }
 
 module.exports = isAuthenticated;
+
+

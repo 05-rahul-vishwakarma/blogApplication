@@ -5,10 +5,8 @@ import '../style/postBlog/createPost.css'
 import axios from 'axios'
 import moment from 'moment';
 import { toast } from 'react-toastify';
-import {  useNavigate } from 'react-router-dom'
-import { UserContext } from "../../context/UserContext";
-// import moment from 'moment';
-
+import { useNavigate } from 'react-router-dom'
+import { useUser } from "../../context/UserContext";
 
 
 async function get64encoding(file) {
@@ -32,8 +30,7 @@ function CreatePost() {
   const [topic, setTopic] = useState("");
   const [images, setImages] = useState([]);
   const [about, setAbout] = useState('');
-  const {user} = useContext(UserContext);
-
+  const { user } = useUser();
 
   const formattedDate = moment().format('YYYY-MM-DD');
   console.log(formattedDate);
@@ -61,11 +58,11 @@ function CreatePost() {
       console.log(data);
       let res = await axios.post('/blogPost', data);
       console.log(res);
-      if(res?.data?.status === 200){
+      if (res?.data?.status === 200) {
         toast.success(res?.data?.message)
         nevigate('/home')
-        
-      }else{
+
+      } else {
         toast.error(res?.data?.message)
       }
 
@@ -82,13 +79,13 @@ function CreatePost() {
     <section className="createPost" >
       <div>
         <h1 className='truncate ' >
-          <input value={topic} onChange={(e) => setTopic(e.target.value)} type="text" className="topic truncate " placeholder="how to design a greate landing page" name="" id="" style={{ width: "100%", padding: "1rem 0", border: "none", outline: "none", fontSize: "2rem" }} />
+          <input value={topic} onChange={(e) => setTopic(e.target.value)} type="text" className="topic truncate " placeholder="Topic of the subject" name="" id="" style={{ width: "100%", padding: "1rem 0", border: "none", outline: "none", fontSize: "2rem" }} />
         </h1>
         <div>
-          <p className='truncate postAuthor ' > <span style={{ color: "red", }} >By: </span>{user?.username}</p>
+          <p className='truncate postAuthor ' > <span style={{ color: "red", }} >By: </span>{user?.username || "username"}</p>
           <p className='createPostDate' > {formattedDate} </p>
         </div>
-        <div className='createPostImg' style={{cursor:"pointer"}} >
+        <div className='createPostImg' style={{ cursor: "pointer" }} >
           <ImageUploading
             multiple
             value={images}
@@ -139,7 +136,7 @@ function CreatePost() {
         <div className="postText" >
           <textarea name="" id="" value={about} onChange={(e) => setAbout(e.target.value)} rows={4} placeholder="Write something about post" ></textarea>
         </div>
-        <button className="btn" onClick={()=>blogPost()}  >
+        <button className="btn" onClick={() => blogPost()}  >
           post
         </button>
       </div>

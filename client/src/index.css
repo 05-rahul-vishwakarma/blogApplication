@@ -13,7 +13,12 @@
 body {
   background-color: #cfd2e44c;
   overflow: hidden;
-  padding-bottom: 4rem;
+}
+
+main{
+  min-height: 100vh;
+  overflow-y: scroll;
+  padding-bottom: 10rem;
 }
 
 button {
@@ -29,6 +34,7 @@ button {
   .home {
     display: grid;
     grid-template-columns: 1fr;
+    overflow-y: scroll;
   }
 
   .profileSection {
@@ -88,9 +94,7 @@ button {
     min-height: 28rem;
   }
 
-  .home {
-    padding: 2rem 0.5rem 2rem 2rem;
-  }
+
 
   .phoneHeader {
     display: none;
@@ -103,4 +107,8 @@ button {
    display: none;
   }
   
+}
+
+.profileSection > h3 {
+	display: none !important;
 }

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
 import '../style/Footer.css'
 import { FaHome } from "react-icons/fa";
 import { BsPersonCircle } from "react-icons/bs";
 import { MdOutlineDriveFolderUpload } from "react-icons/md";
 import { CiLogin } from "react-icons/ci";
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 
 const Footer = () => {

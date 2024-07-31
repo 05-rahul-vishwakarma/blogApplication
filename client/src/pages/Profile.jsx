@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import '../style/profile/profilePage.css'
 import ProfileCard from '../components/ProfileCard'
 import ProfilePostCard from '../components/ProfilePostCard'
@@ -13,8 +14,7 @@ function Profile() {
 
     const ProfileData = async () => {
         try {
-            // let res = await axios.get('/profile', {withCredentials: true});
-            let res = await axiosPrivate.get("/profile");
+            let res = await axios.get('/profile', {withCredentials: true});
             console.log(res);
             if (res?.data?.status !== 200) return navigate("/auth/login");
             setProfile(res?.data?.user?.posts)

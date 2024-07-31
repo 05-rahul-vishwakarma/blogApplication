@@ -29,14 +29,14 @@ main {
 
 
 .home {
-    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    width: 98%;
     height: 100%;
-    padding: .5rem;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
-    grid-gap: 1.5rem;
-    /* overflow-x: scroll; */
-    /* overflow-y: scroll; */
     padding-bottom: 6rem;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: 1fr;
+    place-items: center;
+    grid-gap: 2rem;
 }

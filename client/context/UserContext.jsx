@@ -1,12 +1,14 @@
-// UserContext.js
-import React, { createContext, useState } from 'react';
+/* eslint-disable react/prop-types */
+// context/UserContext.js
+import { createContext, useState, useContext } from 'react';
 
-// Create the context
+// Create the UserContext
 const UserContext = createContext();
 
-// Create a provider component
-const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(""); // Initial state can be null or an initial user object
+
+export const UserProvider = ({ children }) => {
+  const [user, setUser] = useState({});
+
   return (
     <UserContext.Provider value={{ user, setUser }}>
       {children}
@@ -14,4 +16,5 @@ const UserProvider = ({ children }) => {
   );
 };
 
-export { UserContext, UserProvider };
+// Custom hook to use the UserContext
+export const useUser = () => useContext(UserContext);

@@ -25,23 +25,11 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 
 
-app.use(
-  cors({
-    origin: 'https://blogapplicatonfrontend.onrender.com' ,
-    // origin: 'http://localhost:5173',
-    optionsSuccessStatus: 200,
-    preflightContinue: true,
-    credentials: true,
-    allowedHeaders: "Content-Type , Authorization",
-  })
-);
-app.options('*', cors({
+app.use(cors({
+  // origin: 'http://localhost:5173',// allow this origin to access the server
   origin: 'https://blogapplicatonfrontend.onrender.com',
-  // origin: 'http://localhost:5173',
-  optionsSuccessStatus: 200,
-  preflightContinue: true,
-  credentials: true,
-  allowedHeaders: "Content-Type , Authorization",
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true // if your backend requires credentials
 }));
 
 app.use('', authRouter)

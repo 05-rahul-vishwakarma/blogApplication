@@ -7,7 +7,7 @@ const { register, login , isAuth} = require('../controler/authControler')
 
 router.post('/register', register)
 router.post('/login',login)
-router.get('/auth',isAuthenticated,isAuth)
+// router.get('/auth',isAuthenticated,isAuth)
 
 
 module.exports = router;

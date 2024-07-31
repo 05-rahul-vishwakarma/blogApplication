@@ -73,22 +73,30 @@ const blogPost = async (req, res) => {
 
 const allBlogpost = async (req, res) => {
   try {
-    const allBlogPosts = await Post.find().populate({
-      path: "creatorId",
-      model: User
-    }).exec();
+    
+    const allBlogPosts = await Post.find()
+      .select('title content creatorId createdAt blogImage blogWriting') // specify fields you need
+      .populate({
+        path: 'creatorId',
+        select: 'username email profilePhoto ', // specify fields from User
+        model: User
+      })
+      .lean() // get plain JavaScript objects
+      .exec();
+
     return res.json({
       message: "success",
       status: 200,
       allBlogPosts
-    })
+    });
   } catch (error) {
+    console.error("Error fetching blog posts:", error);
     return res.json({
       message: "failed",
       status: 500,
-    })
+    });
   }
-}
+};
 
 const getBlogDetails = async (req, res) => {
   try {
@@ -113,6 +121,9 @@ const getBlogDetails = async (req, res) => {
 const uploadProfilePhoto = async (req, res) => {
   try {
     const { profilePhoto } = req.body;
+    if (!profilePhoto) {
+      throw new Error('please select photo first');
+    }
     const userId = req.id;
     const updatedUser = await User.findByIdAndUpdate(
       userId,
@@ -127,7 +138,11 @@ const uploadProfilePhoto = async (req, res) => {
     })
 
   } catch (error) {
-    console.log(error);
+    return res.json({
+      message:error.message,
+      status: 501,
+    })
+
   }
 }
 

@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const jwt = require('jsonwebtoken');
-
+const CustomError = require('../helper/customError');
 
 const register = async (req, res) => {
     try {
@@ -40,58 +40,48 @@ const register = async (req, res) => {
 
 }
 
-
 const login = async (req, res) => {
     try {
         const { username, password } = req.body;
-        if (!username || !password) throw new Error("field is missing");
+        console.log(username,password);
+
+        if (!username || !password) throw new CustomError('404', 'please fill all the fields');
+
         const user = await User.findOne({ username });
-        if (!user) throw new Error("user is not found");
-        if (password === user.password) {
-            const tokenData = {
-                userId: user._id,
-                username: user.username,
-                email: user.email,
-            }
 
-            const token = await jwt.sign(tokenData, process.env.JWT_SECRET, { expiresIn: '1d' });
+        if (!user) throw new CustomError(404, "user not found please enter valid username");
 
-            res.cookie('token', token, { 
-                maxAge: 1 * 24 * 60 * 60 * 1000 ,
-                sameSite: 'None', 
-                secure : true,
-                httpOnly: false 
-            });
-             return res.send({
-                message: "successfully login",
-                status: 200,
-                _id: user._id,
-                username: user.username,
-                email: user.email,
-                token
-            });
-            
-            } else {
-                return res.json({
-                    message: "password is incorrect",
-                    status: 500
-                })
+        if (password !== user.password) throw new CustomError(401, 'please fill the correct password');
+
+        const tokenData = {
+            userId: user._id,
+            username: user.username,
+            email: user.email,
         }
-    } catch (error) {
-        console.log(error.message);
+
+        const token = jwt.sign(tokenData, process.env.JWT_SECRET, { expiresIn: '1d' });
+
+        res.cookie('token', token, {
+            maxAge: 1 * 24 * 60 * 60 * 1000,
+            sameSite: 'None',
+            secure: true,
+            httpOnly: true
+        });
+
         return res.json({
-            message: "something went wrong",
-            status: 500
+            status: 200,
+            message: "user login successfully",
+            token
         })
+
+
+    } catch (error) {
+        return res.json({
+            status: 501,
+            message: error.message,
+        })
+
     }
 }
 
-const isAuth = async (req, res) => {
-    return res.json({
-        message: "okay working authniticated",
-        status: 200
-    })
-}
-
-
-module.exports = { register, login, isAuth }
+module.exports = { register, login }

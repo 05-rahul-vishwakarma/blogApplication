@@ -11,6 +11,7 @@ function Card({ content }) {
     const navigate = useNavigate();
 
     function BlogDetails(content) {
+        console.log(content);
         const Id = content._id;
 
         navigate(`/home/blog-details?$data=${encodeURIComponent(Id)}`)
@@ -27,7 +28,7 @@ function Card({ content }) {
                 <div className='profileBar' >
                     <div onClick={() => navigate('/profile')} >
                         <img src={content?.creatorId?.profilePhoto || "/profile.svg"} alt="" width={50} height={50} className='dp' />
-                        <h4 style={{marginLeft:".5rem"}} >{content?.username}</h4>
+                        <h4 style={{marginLeft:".5rem"}} >{content?.creatorId?.username}</h4>
                     </div>
 
                     <p>{formattedDate}</p>

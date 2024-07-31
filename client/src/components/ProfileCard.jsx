@@ -6,12 +6,13 @@ import ImageUploading from 'react-images-uploading';
 import { toast } from 'react-toastify';
 import useAxiosPrivate from '../hooks/axiosPrivate';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
 
 
 function ProfileCard() {
 
   let navigate = useNavigate();
-
+  const { user, setUser } = useUser();
 
   async function get64encoding(file) {
     try {
@@ -24,7 +25,6 @@ function ProfileCard() {
         return image?.data_url || false;
       }
     } catch (error) {
-      console.log(error);
       return false;
     }
   }
@@ -37,48 +37,50 @@ function ProfileCard() {
 
   const onChange = (imageList, addUpdateIndex) => {
     setImages(imageList);
-    console.log(imageList[0]);
   };
-  const axiosPrivate = useAxiosPrivate();
+
   const [getProfileData, updateProfileData] = useState();
   const [profile, setProfile] = useState();
 
 
-  console.log(getProfileData);
 
 
-
-  const profileData = async () => {
+  const ProfileData = async () => {
     try {
-      let res = await axiosPrivate.get('/profile');
-      if (!res?.data?.status === "ok") return navigate("/auth/login");
-      setProfile(res?.data?.user?.profilePhoto)
-      updateProfileData(res?.data?.user)
+      let res = await axios.get('/profile', { withCredentials: true });
+      if (res?.data?.status !== 200) return navigate("/auth/login");
+      setProfile(res?.data?.user?.posts);
+      setUser(res?.data?.user)
     } catch (error) {
-      console.log(error);
+      toast.error(error.message)
     }
   }
+
 
 
   const uploadProfilePhoto = async () => {
     try {
       let file = images;
+      console.log(file);
+      if (!file) {
+        toast.error('please choose any update')
+        return;
+      }
       let base64Data = await get64encoding(file);
       if (!base64Data) toast.error("Please select a file first");
       const data = {
         profilePhoto: base64Data
       }
       let res = await axios.post('/uploadProfilePhoto', data);
-      window.location.reload();
       toast.success(res?.data?.message)
     } catch (error) {
-      console.log(error);
+      toast.error(error?.message)
     }
   }
 
 
   useEffect(() => {
-    profileData();
+    ProfileData();
   }, [])
 
 
@@ -91,58 +93,49 @@ function ProfileCard() {
           value={images}
           onChange={onChange}
           maxNumber={maxNumber}
-          maxFileSize={maxFileSize}
           dataURLKey="data_url"
         >
           {({
             imageList,
             onImageUpload,
-            onImageUpdate,
-            onImageRemove,
             isDragging,
             dragProps,
           }) => (
-            // write your building UI
-            <div className="upload__image-wrapper" style={{}} >
-              <button
-                style={isDragging ? { color: 'red' } : undefined}
+            <div className="upload__image-wrapper">
+              <div
+                style={{ padding: "1rem" }}
                 onClick={onImageUpload}
                 {...dragProps}
               >
-
                 {
-                  profile ?
-                    <div className="image-item" >
-                      <img src={profile} alt="" width="100" style={{ marginTop: "1rem" }} />
-                    </div> :
-                    <>
-                      {images.length === 0
-                        ? <div className="" >
-                          <img src="/profile.svg" alt="" width="100" style={{ marginTop: "1rem" }} />
-                        </div>
-                        : <></>
-                      }
-                    </>
+                  user &&
+                  <>
+                    {
+                      imageList.length === 0 ? <img src={user?.profilePhoto || "/profile.svg"} alt="" width={100} style={{ width: 200 }} />
+                        : <>
+                          {imageList.map((image, index) => (
+                            <div key={index} className="image-item">
+                              <img src={image['data_url']} alt="" width="100" style={{ width: "200px" }} />
+
+                            </div>
+                          ))}
+                        </>
+                    }
+                  </>
                 }
 
-
-
-              </button>
+              </div>
               &nbsp;
-              {imageList.map((image, index) => (
-                <div key={index} className="image-item">
-                  <img src={image['data_url']} alt="" width="100" className='img' />
-                </div>
-              ))}
             </div>
           )}
         </ImageUploading>
+
       </div>
-      <span style={{marginLeft:"1rem",fontWeight:"600"}} >
-        {getProfileData?.username}
+      <span style={{ marginLeft: "1rem", fontWeight: "600" }} >
+        {user?.username}
       </span>
-      <div className='btn' style={{ margin: "1rem", textAlign: "center", cursor: "pointer" }} onClick={uploadProfilePhoto}  >
-        post
+      <div className='btn' onClick={uploadProfilePhoto} style={{ margin: "1rem", textAlign: "center", cursor: "pointer" }}   >
+        edit
       </div>
     </section>
   )
