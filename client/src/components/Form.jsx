@@ -14,7 +14,7 @@ function Form({ type }) {
     const submit = async (data) => {
 
         if (type == "login") {
-            let res = await axios.post('https://blogapplicatonfrontend.onrender.com/login', data)
+            let res = await axios.post('/login', data)
             if (res?.data?.status === 200) {
                 toast.success(res?.data?.message)
                 nevigate('/home')                
@@ -25,7 +25,7 @@ function Form({ type }) {
 
         if (type === "register") {
             try {
-                let res = await axios.post('https://blogapplicatonfrontend.onrender.com/register', data)
+                let res = await axios.post('/register', data)
                 console.log(res);
                 if (res?.data?.status === 200) {
                     toast.success(res?.data?.message)

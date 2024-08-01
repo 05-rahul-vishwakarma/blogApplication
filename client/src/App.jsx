@@ -13,10 +13,7 @@ import PrivateRoute from './PrivateRoute';
 import axios from 'axios';
 // import { Suspense } from 'react';
 
-// axios.defaults.baseURL = 'http://localhost:8000';
-// axios.defaults.withCredentials = true;
-
-axios.defaults.baseURL = 'https://blogapplicatonbackend.onrender.com';
+axios.defaults.baseURL = 'https://blogapplication-jam6.onrender.com';
 axios.defaults.withCredentials = true;
 
 function App() {

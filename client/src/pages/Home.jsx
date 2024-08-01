@@ -13,8 +13,7 @@ function Home() {
 
   const getBlogData = async () => {
     try {
-      let res = await axios.get('https://blogapplicatonfrontend.onrender.com/allBlogpost');
-      console.log(res);
+      let res = await axios.get('/allBlogpost');
       if (res?.data?.status === 200) {
         setCardData(res?.data?.allBlogPosts)
         setLoader(!loader)
