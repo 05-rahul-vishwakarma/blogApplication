@@ -3,6 +3,7 @@
 import { Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const PrivateRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -15,9 +16,11 @@ const PrivateRoute = ({ children }) => {
           setIsAuthenticated(true);
         } else {
           setIsAuthenticated(false);
+          toast.error("login first")
         }
       } catch {
         setIsAuthenticated(false);
+        toast.error("login first")
       }
     };
 
