@@ -50,9 +50,13 @@ const login = async (req, res) => {
         if (!username || !password) throw new CustomError('404', 'please fill all the fields');
 
         const user = await User.findOne({ username });
+        console.log(user,'user name------->');
+        
 
         if (!user) throw new CustomError(404, "user not found please enter valid username");
 
+        console.log(user.password );
+        
         if (password !== user.password) throw new CustomError(401, 'please fill the correct password');
 
         const tokenData = {
