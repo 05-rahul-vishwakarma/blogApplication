@@ -36,7 +36,7 @@ main {
     height: 100%;
     display: grid;
     padding-bottom: 6rem;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(3,1fr);
     grid-template-rows: 1fr;
     place-items: center;
     grid-gap: 2rem;

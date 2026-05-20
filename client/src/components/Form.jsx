@@ -12,7 +12,7 @@ function Form({ type }) {
     const nevigate = useNavigate();
 
     const submit = async (data) => {
-
+        console.log(data , '----------------  data -------------');
         if (type == "login") {
             let res = await axios.post('/login', data)
             if (res?.data?.status === 200) {
